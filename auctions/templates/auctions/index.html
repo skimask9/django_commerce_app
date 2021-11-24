@@ -1,0 +1,38 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+Active Listings - {{block.super}}
+{% endblock title %}
+
+{% block body %}
+<h2>Active Listings:</h2>
+
+<nav class="nav">
+    {% for lot_category in lot_categories %}
+    <a class="nav-link" href=" {% url 'lotbycategory' lot_category.id %} ">{{lot_category.name}}</a>
+    {% endfor %}
+</nav>
+
+
+<div class="row row-cols-1 row-cols-md-5 g-5">
+    {% for lot in lots  %}
+    <div class="col">
+        <div class="card">
+            <div class="card h-50" width="300" height="300" >
+                <img src="{{lot.lot_image}}" class="img-fluid rounded-start" width="300" height="300">
+                <div class="card-body">
+                    <h5 class="card-title">{{lot.lot_name}}</h5>
+                    <p class="card-text"><strong>Description:</strong> {{lot.lot_description}}</p>
+                    <p class="card-text"><strong>Category: </strong> {{lot.lot_category.name}}</p>
+                    <p class="card-text"><strong>Initial Bid:</strong> {{lot.lot_price}}$</p>
+                    <p class="card-text"> <small>Listed by:</small><strong> {{lot.lot_author}}</strong></p>
+                    <p class="card-text"><small class="text-muted">{{lot.lot_date}}</small></p>
+                    <a href="{% url 'lot' lot.id %}" class="btn btn-primary">Lot Detailes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

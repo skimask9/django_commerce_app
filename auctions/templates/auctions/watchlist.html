@@ -1,0 +1,35 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %}
+    WatchList  - {{block.super}}
+{% endblock title %}
+
+{% block body %}
+<h1>Watchlist : </h1>
+{% for lot in lots %}
+<div class="row row-cols-4 row-cols-md-3 g-2">
+    <div class="col">
+        <div class="card">
+            <div class="card h-100">
+                <img src="{{lot.lot_image}}" class="img-fluid rounded-start" width="300" height="300">
+                <div class="card-body">
+                    <h5 class="card-title">{{lot.lot_name}}</h5>
+                    <p class="card-text"><strong>Description:</strong> {{lot.lot_description}}</p>
+                    <p class="card-text"><strong>Category: </strong>{{lot.lot_category}}</p>
+                    <p class="card-text"><strong>Initial Bid:</strong> {{lot.lot_price}}$</p>
+                    <p class="card-text"> <small>Listed by:</small><strong> {{lot.lot_author}}</strong></p>
+                    <p class="card-text"><small class="text-muted">{{lot.lot_date}}</small></p>
+                    <p class="card-text"><small class="text-muted">{{lot.lot_status}}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%empty%}
+    <blockquote class="blockquote">
+  <p>Nothing here</p>
+</blockquote>
+{% endfor %}
+   
+
+{% endblock body %}

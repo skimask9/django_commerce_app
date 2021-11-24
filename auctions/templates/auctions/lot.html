@@ -1,0 +1,129 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %}
+Lot - {{lot.pk}} : {{lot.lot_name}} - {{block.super}}
+{% endblock title %}
+
+{% block body %}
+ <h1>Lot: {{lot.lot_name}}</h1>
+{% if user.is_authenticated %}
+<form action="{% url 'watchlist' %}" method="post" class="add-category">
+{% csrf_token %}
+<input type="hidden" name="wlist" value="{{lot.id}}">
+<input type="hidden" name="lotst" value = "{% if lot in user.watchlist.all %}0{% else %}1{% endif %}">
+<button type = "submit"  class="btn btn-success">
+    {% if lot in user.watchlist.all %}Remove from {% else %}Add To{% endif %} Watchlist
+</button>
+</form>
+{% endif %}
+</div>
+<p></p>
+<div class="row row-cols-4 row-cols-md-3 g-2">
+    <div class="col">
+        <div class="card">
+            <div class="card h-100">
+                <img src="{{lot.lot_image}}" class="img-fluid rounded-start" width="300" height="300">
+                <div class="card-body">
+                    <h5 class="card-title">{{lot.lot_name}}</h5>
+                    <p class="card-text"><strong>Description:</strong> {{lot.lot_description}}</p>
+                    <p class="card-text"><strong>Category: </strong>{{lot.lot_category}}</p>
+                    <p class="card-text"><strong>Initial Bid:</strong> {{lot.lot_price}}$</p>
+                    {% for bid in bids  %}
+                    {%empty%}
+                    <div class="alert alert-info text-center">
+                        No Bids Yet!
+                    </div>
+                    {% endfor %}
+                    <p class="card-text"> <small>Listed by:</small><strong> {{lot.lot_author}}</strong></p>
+                    <p class="card-text"><small class="text-muted">{{lot.lot_date}}</small></p>
+                    <p class="card-text"><small class="text-muted">{{lot.lot_status}}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+{% endfor %}
+{% endif %}
+
+<section class="my-3">
+    {% if bid and lot.lot_status  == False %}
+    <div class=" mx-auto alert alert-success" role="alert" style="width: 700px;">
+        {% if bid.bid_user.username == user.username %}
+        You Won The Auction!
+        {% else %}
+        <strong>{{ bid.bid_user.username }}</strong> won, with a bid of <strong>${{ bid.bid_value }}</strong>
+        {% endif %}
+    </div>
+    {% endif %}
+    <div class="position-absolute bottom-50 start-50">
+        <div class=" mx-auto alert alert-success text-center" role="alert" style="width: 700px;">
+            {% for bid in bids  %}
+            <h3>{{bid.bid_user.username}} bid : <strong>{{bid.bid_value}}</storng> at
+                    {{bid.bid_date}}</h3>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="position-absolute top-50 start-50">
+        <div class="mx-auto" style="width: 300px;">
+            {% if lot.lot_status and user.is_authenticated %}
+            <form action="{% url 'bid' lot.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="number" name="bid" class="form-control" placeholder="Bid" step=".01">
+                </div>
+                <p></p>
+                <div class="mx-auto" style="width: 200px;">
+                    <button type="submit" class="btn btn-success"> Place Bid </button>
+                    <p></p>
+                    {% if lot.lot_author.username == user.username %}
+                    <a href="{% url 'end' lot.id %}">
+                        <button class="btn btn-warning" type="button">End Auction</button>
+                    </a>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+    </form>
+    {% endif %}
+</section>
+
+
+<section>
+    Comments:
+    {% for comment in comments   %}
+        <div class="card comment">
+            <div class="class card-body">
+                <div class="class card-title">
+                    <strong class="text-danger" >{{comment.user.username}}</strong> : {{comment.commentValue}}
+                </div>
+                <div class="class card-text">
+                    <small class="text-secondary" >Commented on {{comment.date}}</small>
+                </div>
+            </div>
+        </div>
+    {%empty%}
+    <div class="class alert alert-info mt-2">
+        No Comments Yet
+    </div>
+    {% endfor %}
+    <p></p>
+    {% if user.is_authenticated %}
+        <form action=" {% url 'comment' lot.id %} " method="post">
+            {% csrf_token %}
+            <div class="class form-group">
+                <textarea name="text" class="form-control"  rows="4" placeholder="Enter a comment"></textarea>
+            </div>
+            <p></p>
+            <button class="class btn btn-dark py-2 px-4" type = "submit">Comment</button>
+        </form>
+    
+    {% endif %}
+</section>
+
+{% endblock body %}

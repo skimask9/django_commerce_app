@@ -1,0 +1,30 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %}
+test - {{block.super}}
+{% endblock title %}
+
+{% block body %}
+
+
+<div class="grid-container text-center">
+    {% for cat in cats %}
+    <a href="{% url 'test' cat.name %}">
+        <div class="grid-item">
+            {{ cat.name}}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+
+
+    <div class="item-list"></div>
+        {% for lt in lts  %}
+               <ul>
+                    <li>{{lt.lot_name}}</li>
+                    <img src = "{{lt.lot_image}}">
+                    <li>{{lt.lot_author}}</li>
+               </ul>
+        {% endfor %}
+{% endblock body %}

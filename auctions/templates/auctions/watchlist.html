@@ -6,25 +6,21 @@
 
 {% block body %}
 <h1>Watchlist : </h1>
-{% for lot in lots %}
-<div class="row row-cols-4 row-cols-md-3 g-2">
-    <div class="col">
-        <div class="card">
-            <div class="card h-100">
-                <img src="{{lot.lot_image}}" class="img-fluid rounded-start" width="300" height="300">
-                <div class="card-body">
-                    <h5 class="card-title">{{lot.lot_name}}</h5>
-                    <p class="card-text"><strong>Description:</strong> {{lot.lot_description}}</p>
-                    <p class="card-text"><strong>Category: </strong>{{lot.lot_category}}</p>
-                    <p class="card-text"><strong>Initial Bid:</strong> {{lot.lot_price}}$</p>
-                    <p class="card-text"> <small>Listed by:</small><strong> {{lot.lot_author}}</strong></p>
-                    <p class="card-text"><small class="text-muted">{{lot.lot_date}}</small></p>
-                    <p class="card-text"><small class="text-muted">{{lot.lot_status}}</small></p>
-                </div>
-            </div>
-        </div>
+<main class='lots'>
+    {% for lot in lots  %}
+    <div class = 'lot-item'>
+                    <h5>{{lot.lot_name}}</h5>
+                    <ul>
+                        <li><strong>Description: </strong>{{lot.lot_description}}</li>
+                        <li><strong>Category: </strong>{{lot.lot_category.name}}</li>
+                        <li><strong>Initial Bid: </strong>{{lot.lot_price}}$</li>
+                        <li><strong>Listed by: </strong>{{lot.lot_author}}</li>
+                        <li><small>{{lot.lot_date}}</small></li>
+                    </ul>
+                    <img src="{{lot.lot_image}}" width="300" height="200">
+                    <a href="{% url 'lot' lot.id %}" class="button">Lot Detailes</a>
     </div>
-</div>
+</main>
 {%empty%}
     <blockquote class="blockquote">
   <p>Nothing here</p>

@@ -1,29 +1,17 @@
-{% extends 'auctions/layout.html' %}
-
-{% block title %}
-Products - {{block.super}}
-{% endblock title %}
-
-{% block body %}
+{% extends 'auctions/layout.html' %} {% block title %} Products - {{block.super}} {% endblock title %} {% block body %}
 
 <h1>Products: </h1>
-<div class="row row-cols-1 row-cols-md-5 g-5">
-    {% for product in products  %}
-    <div class="col" width="300" height="300" >
-        <div class="card" width="300" height="300">
-            <div class="card h-100">
-                <img src="{{product.image}}" class="img-fluid rounded-start" width="300" height="300">
-                <div class="card-body">
-                    <h5 class="card-title">{{product.title}}</h5>
-                    <p class="card-text">{{product.description}}</p>
-                    <a href="{{product.detailed}}" class="btn btn-primary">Detailed</a>
-                </div>
-            </div>
-        </div>
+<main class='lots'>
+    {% for product in products %}
+    <div class='lot-item'>
+        <h5>{{product.title}}</h5>
+        <ul>
+            <li>{{product.description}}</li>
+        </ul>
+        <img src="{{product.image}}" width="300" height="200">
+        <a href="{{product.detailed}} " class="button ">Detailed</a>
     </div>
     {% endfor %}
-</div>
-
-
+</main>
 
 {% endblock body %}

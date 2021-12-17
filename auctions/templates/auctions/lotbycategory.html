@@ -6,25 +6,20 @@
 
 {% block body %}
 <h1>{{category.name}}</h1>   
-<div class="row row-cols-1 row-cols-md-5 g-5">
-    {% for item in items %}
-    <div class="col">
-        <div class="card">
-            <div class="card h-100">
-                <img src="{{item.lot_image}}" class="img-fluid rounded-start">
-                <div class="card-body">
+<main class='lots1'>
+    {% for item in items  %}
+    <div class = 'lot-item1'>
                     <h5 class="card-title">{{item.lot_name}}</h5>
-                    <p class="card-text"><strong>Description:</strong> {{item.lot_description}}</p>
-                    <p class="card-text"><strong>Category: </strong>{{item.lot_category}}</p>
-                    <p class="card-text"> <small>Listed by:</small><strong> {{item.lot_author}}</strong></p>
-                    <p class="card-text"><small class="text-muted">{{item.lot_date}}</small></p>
-                    <p class="card-text"><small class="text-muted">{{item.lot_status}}</small></p>
-                </div>
-            </div>
-        </div>
+                    <ul>
+                        <li><strong>Description: </strong>{{item.lot_description}}</li>
+                        <li><strong>Category: </strong>{{item.lot_category.name}}</li>
+                        <li><strong>Initial Bid: </strong>{{item.lot_price}}$</li>
+                        <li><strong>Listed by: </strong>{{item.lot_author}}</li>
+                        <li><small>{{item.lot_date}}</small></li>
+                    </ul>
+                    <img src="{{item.lot_image}}" class="img-fluid rounded-start" width="300" height="300">
     </div>
-    {% endfor %}
-</div>
-
+{% endfor %}
+</main>
 
 {% endblock body %}

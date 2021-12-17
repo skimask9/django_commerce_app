@@ -172,7 +172,8 @@ def createLot(request):
         image = request.POST["image"]
         if image == '':
             image = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png"
-        lot = Lot.objects.create(lot_name = title, lot_category = category, lot_date = timezone.now(), lot_price = initialBid, lot_description = description, lot_author=user, lot_image = image , lot_status = True)
+        lot = Lot.objects.create(lot_name = title, lot_category = category, 
+        lot_date = timezone.now(), lot_price = initialBid, lot_description = description, lot_author=user, lot_image = image , lot_status = True)
         lot.save()
         return HttpResponseRedirect(reverse('index'))
     return render(request, "auctions/createLot.html", { 

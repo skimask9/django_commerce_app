@@ -25,7 +25,7 @@ class Product(models.Model):
 class Lot(models.Model):
     lot_name = models.CharField(max_length=64)
     lot_price = models.DecimalField(decimal_places=2, max_digits=7) 
-    lot_description = models.CharField(max_length=256)
+    lot_description = models.CharField(max_length=70)
     lot_date = models.DateTimeField(auto_now_add=True)
     lot_status = models.BooleanField()
     lot_author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)

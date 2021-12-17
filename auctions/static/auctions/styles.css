@@ -20,12 +20,22 @@ body {
 .lots1 {
     display: flex;
     flex-wrap: wrap;
+    margin: 20px;
+    padding: 20px;
+}
+
+article {
+    margin: 0;
+}
+
+article {
+    margin: 1rem 0;
 }
 
 .lot-item {
     display: flex;
     flex-flow: column;
-    border: 1px outset grey;
+    border: 1px solid black;
     border-radius: 1rem;
     padding: 2rem;
 }

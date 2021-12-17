@@ -7,8 +7,8 @@
 {% block body %}
 <h1>Watchlist : </h1>
 <main class='lots'>
-    {% for lot in lots  %}
-    <div class = 'lot-item'>
+{% for lot in lots  %}
+         <div class = 'lot-item'>
                     <h5>{{lot.lot_name}}</h5>
                     <ul>
                         <li><strong>Description: </strong>{{lot.lot_description}}</li>
@@ -19,7 +19,7 @@
                     </ul>
                     <img src="{{lot.lot_image}}" width="300" height="200">
                     <a href="{% url 'lot' lot.id %}" class="button">Lot Detailes</a>
-    </div>
+        </div>
 </main>
 {%empty%}
     <blockquote class="blockquote">

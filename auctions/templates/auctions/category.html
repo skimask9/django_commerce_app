@@ -7,23 +7,16 @@
 {% block body %}
 <h1>{{category.name}}:</h1>
 <p></p>
-<ul>
-    <div class="row row-cols-1 row-cols-md-5 g-5" >
-        {% for product1 in product  %}
-        <div class="col">
-            <div class="card">
-                <div class="card h-100">
-                    <img src="{{product1.image}}" class="img-fluid rounded-start">
-                    <div class="card-body">
-                        <h5 class="card-title">{{product1.title}}</h5>
-                        <p class="card-text">{{product1.description}}</p>
-                        <a href="{{product1.detailed}}" class="btn btn-primary">Detailed</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
+<main class='lots'>
+    {% for product1 in product %}
+    <div class='lot-item'>
+        <h5>{{product1.title}}</h5>
+        <ul>
+            <li>{{product1.description}}</li>
+        </ul>
+        <img src="{{product1.image}}" width="300" height="200">
+        <a href="{{product1.detailed}} " class="button ">Detailed</a>
     </div>
-
-</ul>
+    {% endfor %}
+</main>
 {% endblock body %}

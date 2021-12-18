@@ -18,10 +18,9 @@ body {
 }
 
 .lots1 {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 20px;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
 }
 
 article {
@@ -41,7 +40,9 @@ article {
 }
 
 .lot-item1 {
-    border: 1px outset grey;
+    display: flex;
+    flex-flow: column;
+    border: 1px solid black;
     border-radius: 1rem;
     padding: 2rem;
 }
@@ -83,4 +84,14 @@ a.button {
 
 .lot-item>h5 {
     margin: 1rem 1rem 0;
+}
+
+.lot-item>img {
+    max-width: 90%;
+    max-height: 200px;
+}
+
+.lot-item1>img {
+    max-width: 90%;
+    max-height: 200px;
 }

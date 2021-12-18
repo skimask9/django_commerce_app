@@ -23,7 +23,7 @@ Active Listings - {{block.super}}
                         <li><strong>Listed by: </strong>{{lot.lot_author}}</li>
                         <li><small>{{lot.lot_date}}</small></li>
                     </ul>
-                    <img src="{{lot.lot_image}}" width="200">
+                    <img src="{{lot.lot_image}}">
                     <a href="{% url 'lot' lot.id %}" class="button">Lot Detailes</a>
     </article>
 {% endfor %}

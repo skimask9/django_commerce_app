@@ -6,9 +6,9 @@
 
 {% block body %}
 <h1>Watchlist : </h1>
-<main class='lots'>
-{% for lot in lots  %}
-         <div class = 'lot-item'>
+<main class='lots1'>
+    {% for lot in lots  %}
+    <div class = 'lot-item1'>
                     <h5>{{lot.lot_name}}</h5>
                     <ul>
                         <li><strong>Description: </strong>{{lot.lot_description}}</li>
@@ -17,14 +17,16 @@
                         <li><strong>Listed by: </strong>{{lot.lot_author}}</li>
                         <li><small>{{lot.lot_date}}</small></li>
                     </ul>
-                    <img src="{{lot.lot_image}}" width="300" height="200">
+                    <img src="{{lot.lot_image }}">
                     <a href="{% url 'lot' lot.id %}" class="button">Lot Detailes</a>
-        </div>
-</main>
+    
+    </div>
 {%empty%}
     <blockquote class="blockquote">
   <p>Nothing here</p>
 </blockquote>
+
+</main>
 {% endfor %}
    
 

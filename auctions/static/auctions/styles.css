@@ -1,8 +1,11 @@
 body {
     padding: 10px;
-    background-color: #6b2d5c;
-    background-image: linear-gradient(316deg, #6b2d5c 10%, #e0e5e5 74%);
-    background-size: cover;
+    background-color: #b8c6db;
+    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+}
+
+html {
+    min-height: 100%;
 }
 
 .card {
@@ -37,9 +40,10 @@ article {
 .lot-item {
     display: flex;
     flex-flow: column;
-    border: 1px solid black;
+    border: 1px solid grey;
     border-radius: 1rem;
     padding: 2rem;
+    background-color: white;
 }
 
 .lot-item1 {
@@ -70,13 +74,12 @@ a.button {
 
 .button {
     margin-top: auto;
-    background: #6b2d5c;
+    background: purple;
     padding: 0.5rem;
-    border: none;
-    border-radius: 1rem;
+    border-color: white;
+    border-radius: 15rem;
     font-size: 1.2rem;
     text-align: center;
-    outline: none !important;
 }
 
 .button:hover {
@@ -97,4 +100,13 @@ a.button {
 .lot-item1>img {
     max-width: 90%;
     max-height: 200px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-link {
+    color: black;
 }
